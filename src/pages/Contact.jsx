@@ -30,7 +30,7 @@ const Contact = () => {
     try {
       const res = await addContact(userId, jobId, message, resume, token);
       Swal.fire("Application sent!", "", "success");
-      navigate("/savedjobs");
+      navigate("/");
     } catch (error) {
       console.error("Failed to send contact:", error);
       Swal.fire("Something went wrong!", "", "error");
