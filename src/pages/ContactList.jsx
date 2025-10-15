@@ -5,12 +5,14 @@ import { useCookies } from "react-cookie";
 import { useParams } from "react-router";
 import Swal from "sweetalert2";
 import { getContactsByJob, updateContactStatus } from "../utils/api_contact";
+import { useNavigate } from "react-router";
 
 const ContactList = () => {
   const [cookies] = useCookies(["currentuser"]);
   const { currentuser = {} } = cookies;
   const { token = "", role = "" } = currentuser;
   const { jobId } = useParams();
+  const navigate = useNavigate();
 
   const [contacts, setContacts] = useState([]);
 
