@@ -39,14 +39,14 @@ const ContactList = () => {
         prev.map((c) => (c._id === id ? { ...c, status: newStatus } : c))
       );
     } catch (error) {
-      console.error("❌ Failed to update status:", error);
+      console.error(" Failed to update status:", error);
       Swal.fire("Error updating status!", "", "error");
     }
   };
 
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error(" Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);
@@ -60,7 +60,7 @@ const ContactList = () => {
         </Typography>
 
         {contacts.length === 0 ? (
-          <Typography color="text.secondary">No contacts yet 💤</Typography>
+          <Typography color="text.secondary">No contacts yet</Typography>
         ) : (
           contacts.map((contact) => (
             <Paper

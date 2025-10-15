@@ -30,7 +30,7 @@ const JobLists = () => {
       fetch(`${API_URL}jobs/employer/${userName}`)
         .then((res) => res.json())
         .then((data) => setJobs(data))
-        .catch((err) => console.error(err));
+        .catch((error) => console.error(error));
     }
   }, [role, userName]);
 
@@ -56,7 +56,7 @@ const JobLists = () => {
   // Redirect if not logged in
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error("Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);

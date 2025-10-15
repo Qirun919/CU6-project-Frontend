@@ -14,16 +14,18 @@ import { useCookies } from "react-cookie";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
 import { getAllUsers, updateUserRole, deleteUser } from "../utils/api_users";
+import { useNavigate } from "react-router";
 
 const ManageUsers = () => {
   const [cookies] = useCookies(["currentuser"]);
   const { currentuser = {} } = cookies;
   const { token = "", role = "" } = currentuser;
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error("Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);
@@ -47,7 +49,7 @@ const ManageUsers = () => {
     fetchUsers();
   }, [token, role]);
 
-  // 🔄 Change user role
+  //  Change user role
   const handleRoleChange = async (id, currentRole) => {
     const newRole = currentRole === "user" ? "employer" : "user";
 
@@ -73,8 +75,6 @@ const ManageUsers = () => {
     });
   };
 
-  
-
   //  Delete user
   const handleDeleteUser = async (id) => {
     Swal.fire({
@@ -93,7 +93,7 @@ const ManageUsers = () => {
           setUsers(updatedUsers);
           toast.success("User deleted successfully!");
         } catch (error) {
-          console.error("❌ Failed to delete user:", error);
+          console.error("Failed to delete user:", error);
           toast.error("Failed to delete user.");
         }
       }
@@ -110,7 +110,7 @@ const ManageUsers = () => {
 
         {users.length === 0 ? (
           <Typography color="text.secondary" sx={{ mt: 2 }}>
-            No users found 😴
+            No users found
           </Typography>
         ) : (
           users.map((user) => (

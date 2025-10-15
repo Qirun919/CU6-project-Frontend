@@ -71,7 +71,7 @@ const EditJob = () => {
 
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error(" Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);

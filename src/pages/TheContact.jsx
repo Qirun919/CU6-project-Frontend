@@ -3,8 +3,10 @@ import Header from "../components/Header";
 import { Container, Typography, Paper, Box, Chip } from "@mui/material";
 import { useCookies } from "react-cookie";
 import { getContactsByUser } from "../utils/api_contact";
+import { useNavigate } from "react-router";
 
 const TheContact = () => {
+  const navigate = useNavigate();
   const [cookies] = useCookies(["currentuser"]);
   const { currentuser = {} } = cookies;
   const { token = "", _id: userId = "" } = currentuser;
@@ -20,7 +22,7 @@ const TheContact = () => {
         const res = await getContactsByUser(userId, token);
         setContacts(res);
       } catch (error) {
-        console.error("❌ Failed to load your contacts:", error);
+        console.error("Failed to load your contacts:", error);
       } finally {
         setLoading(false);
       }
@@ -30,7 +32,7 @@ const TheContact = () => {
 
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error("Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);
@@ -46,7 +48,7 @@ const TheContact = () => {
         {loading ? (
           <Typography align="center">Loading...</Typography>
         ) : contacts.length === 0 ? (
-          <Typography align="center">No contact submissions yet 💤</Typography>
+          <Typography align="center">No contact submissions yet </Typography>
         ) : (
           contacts.map((contact) => (
             <Paper
@@ -54,7 +56,7 @@ const TheContact = () => {
               sx={{ p: 3, mb: 2, borderRadius: 3, boxShadow: 2 }}
             >
               <Typography variant="h6">
-                Job: {contact.job?.title || "The Company got delete bruh"}
+                Job: {contact.job.title || "The Company got delete bruh"}
               </Typography>
               <Typography variant="body2" sx={{ mt: 1, mb: 1 }}>
                 {contact.message}

@@ -44,7 +44,7 @@ const Jobs = () => {
   // if user don't have login it will be error("please login first to use ")
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error("Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);
@@ -94,7 +94,7 @@ const Jobs = () => {
         </Box>
 
         {/* Job Cards */}
-        <Container container spacing={4}>
+        <Container container spacing={4} sx={{ m: 3 }}>
           {jobs.map((job) => (
             <Card key={job._id}>
               <CardContent sx={{ p: 3 }}>

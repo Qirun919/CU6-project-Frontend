@@ -17,6 +17,7 @@ import IconButton from "@mui/material/IconButton";
 import Swal from "sweetalert2";
 import Modal from "@mui/material/Modal";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 import { useCookies } from "react-cookie";
 import {
   getSpecialisations,
@@ -31,6 +32,7 @@ const SpecialisationsPage = () => {
   const [open, setOpen] = useState(false);
   const [selectedSpecID, setSelectedSpecID] = useState("");
   const [selectedSpecLabel, setSelectedSpecLabel] = useState("");
+  const navigate = useNavigate();
 
   const [cookies] = useCookies(["currentuser"]);
   const currentuser = cookies.currentuser || {};
@@ -44,8 +46,8 @@ const SpecialisationsPage = () => {
     try {
       const data = await getSpecialisations();
       setSpecialisations(data);
-    } catch (err) {
-      toast.error(err.message || "Failed to fetch specialisations");
+    } catch (error) {
+      toast.error(error.message || "Failed to fetch specialisations");
     }
   };
 
@@ -60,8 +62,8 @@ const SpecialisationsPage = () => {
       setSpecialisations(newSpecialisations);
       setLabel("");
       toast.success("New specialisation has been added");
-    } catch (err) {
-      toast.error(err.message || "Failed to add specialisation");
+    } catch (error) {
+      toast.error(error.message || "Failed to add specialisation");
     }
   };
 
@@ -76,8 +78,8 @@ const SpecialisationsPage = () => {
       setSpecialisations(newSpecialisations);
       setOpen(false);
       toast.success("Specialisation has been updated");
-    } catch (err) {
-      toast.error(err.message || "Failed to update specialisation");
+    } catch (error) {
+      toast.error(error.message || "Failed to update specialisation");
     }
   };
 
@@ -97,8 +99,8 @@ const SpecialisationsPage = () => {
           const newSpecialisations = await getSpecialisations();
           setSpecialisations(newSpecialisations);
           toast.success("Specialisation has been deleted");
-        } catch (err) {
-          toast.error(err.message || "Failed to delete specialisation");
+        } catch (error) {
+          toast.error(error.message || "Failed to delete specialisation");
         }
       }
     });
@@ -106,7 +108,7 @@ const SpecialisationsPage = () => {
 
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error("Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);

@@ -52,7 +52,7 @@ const AddJob = () => {
       !role ||
       !specialisation
     ) {
-      toast.error("⚠️ Please fill in all required fields");
+      toast.error(" Please fill in all required fields");
       return;
     }
 
@@ -67,15 +67,15 @@ const AddJob = () => {
         salary,
         role,
         specialisation,
-        currentuser?.name,
+        currentuser.name,
         token
       );
 
-      toast.success("🎉 Job added successfully!");
+      toast.success("Job added successfully!");
       navigate("/");
     } catch (error) {
       console.error(error);
-      toast.error(error.message || "❌ Failed to add job");
+      toast.error(error.message || "Failed to add job");
     } finally {
       setLoading(false);
     }
@@ -83,7 +83,7 @@ const AddJob = () => {
 
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error("Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);
@@ -102,6 +102,7 @@ const AddJob = () => {
             fullWidth
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            inputProps={{ maxLength: 30 }}
           />
         </Box>
 
@@ -111,6 +112,7 @@ const AddJob = () => {
             fullWidth
             value={companyName}
             onChange={(e) => setCompanyName(e.target.value)}
+            inputProps={{ maxLength: 20 }}
           />
         </Box>
 
@@ -120,15 +122,17 @@ const AddJob = () => {
             fullWidth
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            inputProps={{ maxLength: 20 }}
           />
         </Box>
 
         <Box mb={2}>
           <TextField
-            label="Salary (e.g. 3000 or 'Undisclosed')"
+            label="Salary "
             fullWidth
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
+            inputProps={{ maxLength: 20 }}
           />
         </Box>
 
@@ -176,6 +180,7 @@ const AddJob = () => {
             rows={4}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            inputProps={{ maxLength: 50 }}
           />
         </Box>
 

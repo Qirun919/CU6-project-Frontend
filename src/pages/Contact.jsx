@@ -32,14 +32,14 @@ const Contact = () => {
       Swal.fire("Application sent!", "", "success");
       navigate("/savedjobs");
     } catch (error) {
-      console.error("❌ Failed to send contact:", error);
+      console.error("Failed to send contact:", error);
       Swal.fire("Something went wrong!", "", "error");
     }
   };
 
   useEffect(() => {
     if (!token) {
-      toast.error("⚠️ Please log in first!");
+      toast.error(" Please log in first!");
       navigate("/login");
     }
   }, [token, navigate]);

@@ -25,7 +25,7 @@ const SavedJobs = () => {
         setSavedJobs(res || []);
       })
       .catch((error) => {
-        console.error("❌ Failed to fetch saved jobs:", error);
+        console.error("Failed to fetch saved jobs:", error);
         setSavedJobs([]);
       });
   }, [token]);
@@ -47,7 +47,7 @@ const SavedJobs = () => {
           setSavedJobs(updated || []);
           toast.success("Saved job removed");
         } catch (error) {
-          console.error("❌ Failed to delete saved job:", error);
+          console.error(" Failed to delete saved job:", error);
           toast.error("Failed to delete job");
         }
       }
@@ -65,7 +65,7 @@ const SavedJobs = () => {
         </Typography>
 
         {savedJobs.length === 0 ? (
-          <Typography color="text.secondary">No saved jobs yet 😴</Typography>
+          <Typography color="text.secondary">No saved jobs yet </Typography>
         ) : (
           savedJobs.map((item) => (
             <Paper
@@ -73,19 +73,19 @@ const SavedJobs = () => {
               sx={{ p: 3, mb: 2, borderRadius: 3, boxShadow: 2 }}
             >
               <Typography variant="h6">
-                {item.job?.title || "Untitled"}
+                {item.job.title || "Untitled"}
               </Typography>
               <Typography color="text.secondary" sx={{ mb: 1 }}>
-                {item.job?.companyName || "Unknown Company"} —{" "}
-                {item.job?.location || "Unspecified"}
+                {item.job.companyName || "Unknown Company"} —{" "}
+                {item.job.location || "Unspecified"}
               </Typography>
               <Typography variant="body2" sx={{ mb: 2 }}>
-                {item.job?.description || "No description available."}
+                {item.job.description || "No description available."}
               </Typography>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Button
                   variant="outlined"
-                  href={`/job/${item.job?._id}/check`}
+                  href={`/job/${item.job._id}/check`}
                   sx={{ borderRadius: 2 }}
                 >
                   View Job
