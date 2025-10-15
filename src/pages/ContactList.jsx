@@ -17,11 +17,6 @@ const ContactList = () => {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    if (!token || role !== "employer") {
-      Swal.fire("Access Denied", "Employers  only.", "error");
-      return;
-    }
-
     const fetchContacts = async () => {
       try {
         const res = await getContactsByJob(jobId, token);
