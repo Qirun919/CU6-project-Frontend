@@ -83,7 +83,7 @@ const SavedJobs = () => {
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Button
                   variant="outlined"
-                  href={`/job/${item.job._id}/check`}
+                  href={`/job/${item.job?._id}/check`}
                   sx={{ borderRadius: 2 }}
                 >
                   View Job
