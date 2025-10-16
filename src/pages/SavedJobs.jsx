@@ -54,8 +54,6 @@ const SavedJobs = () => {
     });
   };
 
-
-
   return (
     <>
       <Header current="savedjobs" />
@@ -73,14 +71,14 @@ const SavedJobs = () => {
               sx={{ p: 3, mb: 2, borderRadius: 3, boxShadow: 2 }}
             >
               <Typography variant="h6">
-                {item.job.title || "Untitled"}
+                {item.job?.title || "Untitled"}
               </Typography>
               <Typography color="text.secondary" sx={{ mb: 1 }}>
-                {item.job.companyName || "Unknown Company"} —{" "}
-                {item.job.location || "Unspecified"}
+                {item.job?.companyName || "Unknown Company"} —{" "}
+                {item.job?.location || "Unspecified"}
               </Typography>
               <Typography variant="body2" sx={{ mb: 2 }}>
-                {item.job.description || "No description available."}
+                {item.job?.description || "No description available."}
               </Typography>
               <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Button
